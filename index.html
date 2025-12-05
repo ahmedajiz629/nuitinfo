@@ -10,35 +10,28 @@
     <div id="app"></div>
     <div class="hud">
       <div class="hud__card">
-        <p class="tag">Village Numerique Resistant</p>
-        <h1 data-hud="title">Door of Steam</h1>
-        <p data-hud="description">
-          Explore the symbolic gate between an extractive stack and a resilient village. Tap the portal or use the
-          buttons to switch modes.
-        </p>
-        <div class="meters">
-          <div class="meter" data-meter="sobriety">
-            <span>Sobriety</span>
-            <div class="bar">
-              <div class="fill" style="width: 40%" data-value="40"></div>
-            </div>
+        <p class="tag">Portes de Résistance</p>
+        <div class="hud__meta">
+          <span data-hud="progress">Question 1 / 5</span>
+          <span data-hud="score">Score 0</span>
+        </div>
+        <h1 data-hud="question-title">Choisissez la porte qui mène au numérique résilient</h1>
+        <p class="detail" data-hud="question-detail">Décrypte les dilemmes du Village NIRD.</p>
+        <div class="options-hint">
+          <div>
+            <p class="label">Porte A</p>
+            <p data-hud="option-left">Mise en commun des équipements</p>
           </div>
-          <div class="meter" data-meter="inclusion">
-            <span>Inclusion</span>
-            <div class="bar">
-              <div class="fill" style="width: 50%" data-value="50"></div>
-            </div>
-          </div>
-          <div class="meter" data-meter="autonomy">
-            <span>Autonomy</span>
-            <div class="bar">
-              <div class="fill" style="width: 30%" data-value="30"></div>
-            </div>
+          <div>
+            <p class="label">Porte B</p>
+            <p data-hud="option-right">Location propriétaire verrouillée</p>
           </div>
         </div>
-        <div class="actions">
-          <button data-state="goliath" class="active">Goliath mode</button>
-          <button data-state="village">Village NIRD</button>
+        <div class="feedback" data-hud="feedback">Clique une porte pour répondre.</div>
+        <button class="next" data-action="next" disabled>Question suivante</button>
+        <div class="summary" data-hud="summary" hidden>
+          <h2>Résultats</h2>
+          <p data-hud="summary-text"></p>
         </div>
       </div>
     </div>
