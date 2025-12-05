@@ -1,96 +1,152 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Space Grotesk', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: #f4fbff;
+  background-color: #05060f;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
+  line-height: 1.5;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  background: radial-gradient(circle at 20% 20%, #182a49, #05060f 60%);
+  color: #f4fbff;
+  overflow: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#app,
+#renderCanvas {
+  width: 100vw;
+  height: 100vh;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+#renderCanvas {
+  display: block;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 2rem;
+  pointer-events: none;
+}
+
+.hud__card {
+  width: min(420px, 90vw);
+  background: rgba(6, 8, 18, 0.85);
+  border: 1px solid rgba(139, 255, 219, 0.25);
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 1.2rem;
+  padding: 1.8rem;
+  pointer-events: auto;
+  backdrop-filter: blur(14px);
+}
+
+.tag {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: #8af1ff;
+  margin-bottom: 0.4rem;
+}
+
+.hud__card h1 {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  margin: 0 0 0.6rem;
+}
+
+.hud__card p {
+  margin: 0 0 1.2rem;
+  color: #c8d5f0;
+}
+
+.meters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.meter span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #97b8ff;
+}
+
+.bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  margin-top: 0.35rem;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff8b56, #8af1ff);
+  border-radius: inherit;
+  transition: width 0.5s ease, background 0.6s ease;
+}
+
+.fill::after {
+  content: attr(data-value) '%';
+  position: absolute;
+  right: 0.5rem;
+  top: -1.6rem;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  flex: 1 1 120px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: inherit;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+.actions button.active {
+  background: linear-gradient(120deg, #18ffc7, #5b7bff);
+  border-color: transparent;
+  color: #05060f;
+  font-weight: 600;
+}
+
+.actions button:focus-visible {
+  outline: 2px solid #8af1ff;
+}
+
+@media (max-width: 720px) {
+  .hud {
+    padding: 1rem;
+    align-items: flex-start;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+
+  .hud__card {
+    padding: 1.2rem;
+    backdrop-filter: blur(8px);
   }
 }
